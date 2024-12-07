@@ -52,27 +52,27 @@ double calculateResistance() {
 
 char getChoice() {
 	char choice;
-	char extrachoice;
-	int choiceValidator = 0;
+	char extra;
+	int isValid = 0;
 	do {
 		printf("\nCalculate again [y/n]? ");
 		fflush(stdout);
-		(void)scanf(" %c", &choice);
-		if (choice == 'y' || choice == 'Y' || choice == 'n' || choice == 'N') {
-			//if (scanf(" %c", &extrachoice) == 1) {
-			//	choiceValidator = 0;
-			//}
-			//else {
-			//	choiceValidator = 1;
-				return choice;
-			//}
-			
+		if (scanf(" %c", &choice) == 1) {
+			if ((extra = getchar()) != '\n') {
+				while ((extra = getchar()) != '\n' && extra != EOF);
+				printf("Answer 'y' or 'n', please!");
+				continue;
 			}
-		else {
-			printf("Answer 'y' or 'n', please! ");
+			if (choice == 'y' || choice == 'Y' || choice == 'n' || choice == 'N') {
+				isValid = 1;
 			}
-	} while (choiceValidator != 1);
-	
+			else {
+				printf("Answer 'y' or 'n', please!");
+			}
+		}
+	} while (!isValid);
+
+	return choice;
 	
 }
 
@@ -85,4 +85,3 @@ int main() {
 
 	return 0;
 }
-//kiughvfiuytfg
